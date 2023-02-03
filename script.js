@@ -36,14 +36,24 @@ let handItem;
 const inventory = document.getElementById("inventory");
 
 inventory.addEventListener("click" , (e)=>{
-    if(e.target.classList.contains("diamond-pickaxe")){
-        handItem = "diamond-pickaxe";
+    if(e.target.classList.contains("item")){
+        handItem = e.target.getAttribute("itemtype");
         changeCursor();
     }
 });
 
 function changeCursor (){
-    document.body.style.cursor = "url(./cursor/"+handItem+".png) , pointer";
+    document.body.style.cursor = "url(./cursor/"+handItem+".png) , auto";
     console.log("cursor changed");
     console.log(document.body.style);
 }
+
+function giveInventoryItemsBackground () {
+    const items = document.querySelectorAll(".item");
+    items.forEach(item => {
+        console.log(item);
+        item.style.background = "url(./blocks/"+ item.getAttribute("itemtype") +".webp) center center/cover";
+    });
+}
+
+giveInventoryItemsBackground();
