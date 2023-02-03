@@ -13,8 +13,10 @@
     width: 3rem;
     height: 3rem;
     background-color: #87CEEB;
-    /* border: 1px black solid; */
     display: inline-block;
+}
+.cell:hover{
+    border: 1px black solid;
 }
 
 .grass {
