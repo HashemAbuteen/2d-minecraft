@@ -1,11 +1,5 @@
 const gameContainer = document.getElementsByClassName("game-container")[0];
 
-// for (let i = 0; i < 100000; i++) {
-//     const cell = document.createElement("div");
-//     cell.classList.add("cell");
-//     gameContainer.appendChild(cell);
-// }
-
 for (let i = 30; i > 0; i--) {
     const row = document.createElement("div");
     row.classList.add("row");
