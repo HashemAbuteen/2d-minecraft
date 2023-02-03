@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.row{
+    white-space: nowrap;
+    height: 3rem;
+}
+
+.cell {
+    width: 3rem;
+    height: 3rem;
+    background-color: aqua;
+    /* border: 1px black solid; */
+    display: inline-block;
+}
+
+.grass {
+    background: url(./blocks/grass.webp) center center/cover;
+}
+
+.dirt{
+    background: url(./blocks/dirt.webp) center center/cover;
+}
+.stone{
+    background: url(./blocks/stone.webp) center center/cover;
+}
+.bedrock{
+    background: url(./blocks/bedrock.webp) center center/cover;
+}
