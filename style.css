@@ -43,7 +43,7 @@
     background-size: 3rem 3rem;
     padding: 2px;
 }
-.inventory-item {
+.inventory-slot {
     display: inline-block;
     width: 3rem;
     height: 3rem;
@@ -54,5 +54,8 @@
 .item{
     height: 100%;
     width: 100%;
+}
+
+.diamond-pickaxe {
     background: url(./blocks/diamond-pickaxe.webp) center center/cover;
 }

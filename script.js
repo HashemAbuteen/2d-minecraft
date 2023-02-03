@@ -30,3 +30,20 @@ for (let i = 30; i > 0; i--) {
         row.appendChild(cell);
     }
 }
+
+let handItem;
+
+const inventory = document.getElementById("inventory");
+
+inventory.addEventListener("click" , (e)=>{
+    if(e.target.classList.contains("diamond-pickaxe")){
+        handItem = "diamond-pickaxe";
+        changeCursor();
+    }
+});
+
+function changeCursor (){
+    document.body.style.cursor = "url(./cursor/"+handItem+".png) , pointer";
+    console.log("cursor changed");
+    console.log(document.body.style);
+}
