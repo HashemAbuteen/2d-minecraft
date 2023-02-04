@@ -60,8 +60,6 @@ inventory.addEventListener("click" , (e)=>{
 //make the cursor is the handItem
 function changeCursor (){
     document.body.style.cursor = "url(./cursor/"+handItem+".png) , auto";
-    console.log("cursor changed");
-    console.log(document.body.style);
 }
 
 //this function go through inventory slots and and set background for them
