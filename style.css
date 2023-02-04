@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html{
+    background-color: #001E3F;
+}
+
 .row{
     white-space: nowrap;
     height: 3rem;
@@ -19,20 +23,6 @@
     border: 1px black solid;
 }
 
-.grass {
-    background: url(./blocks/grass.webp) center center/cover;
-}
-
-.dirt{
-    background: url(./blocks/dirt.webp) center center/cover;
-}
-.stone{
-    background: url(./blocks/stone.webp) center center/cover;
-}
-.bedrock{
-    background: url(./blocks/bedrock.webp) center center/cover;
-}
-
 #inventory{
     position: fixed;
     top: 2rem;
@@ -41,15 +31,13 @@
     margin: auto;
     width: fit-content;
     display: flex;
-    background: url(./blocks/stone.webp);
-    background-size: 3rem 3rem;
-    padding: 2px;
+    background: url(./imgs/inventory-bg.png) center center/cover;
 }
 .inventory-slot {
     display: inline-block;
     width: 3rem;
     height: 3rem;
-    background-color: white;
+    background-color: transparent;
     margin: 2px;
     padding: 0.2rem;
 }
