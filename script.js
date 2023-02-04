@@ -1,5 +1,6 @@
 const gameContainer = document.getElementsByClassName("game-container")[0];
 
+//generate the world
 for (let i = 30; i > 0; i--) {
     const row = document.createElement("div");
     row.classList.add("row");
@@ -31,10 +32,24 @@ for (let i = 30; i > 0; i--) {
     }
 }
 
+//constants define what is a block and what is a tool and the type of the tool
+const shovels = ["diamond-shovel"];
+const axes = ["diamond-axe"];
+const pickaxes = ["diamond-pickaxe"];
+const blocks = ["dirt" , "stone" , "grass"];
+//what tool break each block
+const blockTool = {
+    dirt : shovels,
+    stone : pickaxes,
+    grass : shovels,
+}
+
+//hand item is the tool/block chosen from inventory
 let handItem;
 
 const inventory = document.getElementById("inventory");
 
+//changing handItem from inventory
 inventory.addEventListener("click" , (e)=>{
     if(e.target.classList.contains("item")){
         handItem = e.target.getAttribute("itemtype");
@@ -42,12 +57,14 @@ inventory.addEventListener("click" , (e)=>{
     }
 });
 
+//make the cursor is the handItem
 function changeCursor (){
     document.body.style.cursor = "url(./cursor/"+handItem+".png) , auto";
     console.log("cursor changed");
     console.log(document.body.style);
 }
 
+//this function go through inventory slots and and set background for them
 function setBackgrounds () {
     const items = document.querySelectorAll(".item");
     items.forEach(item => {
@@ -63,6 +80,8 @@ function setBackgrounds () {
     });
 }
 
+//this functions sets background for one inventory item or one cell
+//this is used when an update happens
 function setBackground(item){
     if(item.getAttribute("itemtype")){
         item.style.background = "url(./blocks/"+ item.getAttribute("itemtype") +".webp) center center/cover";
@@ -77,11 +96,16 @@ function setBackground(item){
 
 setBackgrounds();
 
+//this handles clicks in the game container
 gameContainer.addEventListener("click" , (e)=>{
     if(e.target.classList.contains("cell")){
+        //if there is no item in hand => do nothing
         if(!handItem){
             return;
         }
+        //if the targeted cell is empty
+        //if the handItem is a block => set the cell as the chosen block and refresh its background
+        //if the handItem is a tool => do nothing
         if(!e.target.getAttribute("blocktype")){
             if(blocks.includes(handItem)){
                 e.target.setAttribute("blocktype" , handItem);
@@ -92,6 +116,9 @@ gameContainer.addEventListener("click" , (e)=>{
                 return;
             }
         }
+        //if the targeted cell is not empty && the handItem is the right tool =>
+        //set the cell as empty and refresh its background
+        //and add the removed block to the inventory
         if(blockTool[e.target.getAttribute("blocktype")].includes(handItem)){
             const type = e.target.getAttribute("blocktype");
             e.target.setAttribute("blocktype" , "");
@@ -100,16 +127,8 @@ gameContainer.addEventListener("click" , (e)=>{
         }
     }
 });
-const shovels = ["diamond-shovel"];
-const axes = ["diamond-axe"];
-const pickaxes = ["diamond-pickaxe"];
-const blocks = ["dirt" , "stone" , "grass"];
-const blockTool = {
-    dirt : shovels,
-    stone : pickaxes,
-    grass : shovels,
-}
 
+//this function handles adding items to the inventory
 function addToInventory(type){
     const items = document.querySelectorAll(".item");
     for (const item of items) {
