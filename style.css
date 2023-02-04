@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'minecraft';
+    src: url(./fonts/MinecraftRegular-Bmg3.otf) format('opentype');
+}
 * {
     margin: 0;
     padding: 0;
@@ -6,6 +10,10 @@
 
 html{
     background-color: #001E3F;
+}
+
+body{
+    font-family: 'minecraft', sans-serif;
 }
 
 .row{
@@ -45,5 +53,8 @@ html{
 .item{
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
 }
 
