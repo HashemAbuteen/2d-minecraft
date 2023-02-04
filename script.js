@@ -67,6 +67,9 @@ function setBackground(item){
     if(item.getAttribute("itemtype")){
         item.style.background = "url(./blocks/"+ item.getAttribute("itemtype") +".webp) center center/cover";
     }
+    else if(item.getAttribute("blocktype")){
+        item.style.background = "url(./blocks/"+ item.getAttribute("blocktype") +".webp) center center/cover";
+    }
     else{
         item.style.background = "";
     }
@@ -80,20 +83,43 @@ gameContainer.addEventListener("click" , (e)=>{
             return;
         }
         if(!e.target.getAttribute("blocktype")){
-            return;
+            if(blocks.includes(handItem)){
+                e.target.setAttribute("blocktype" , handItem);
+                setBackground(e.target);
+                return;
+            }
+            else{
+                return;
+            }
         }
         if(blockTool[e.target.getAttribute("blocktype")].includes(handItem)){
             const type = e.target.getAttribute("blocktype");
             e.target.setAttribute("blocktype" , "");
             setBackground(e.target);
+            addToInventory(type);
         }
     }
 });
 const shovels = ["diamond-shovel"];
 const axes = ["diamond-axe"];
 const pickaxes = ["diamond-pickaxe"];
+const blocks = ["dirt" , "stone" , "grass"];
 const blockTool = {
     dirt : shovels,
     stone : pickaxes,
     grass : shovels,
+}
+
+function addToInventory(type){
+    const items = document.querySelectorAll(".item");
+    for (const item of items) {
+        if(!item.getAttribute("itemtype")){
+            item.setAttribute("itemtype" , type);
+            setBackground(item);
+            return;
+        }
+        else if(item.getAttribute("itemtype") === type){
+            return;
+        }
+    }
 }
