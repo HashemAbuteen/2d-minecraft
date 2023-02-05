@@ -10,14 +10,18 @@ function startTheGame(){
     setBackgrounds();
     handItem = "";
     changeCursor();
+    gameContainer.style.display = "block";
+    gameContainer.focus()
 }
 
 function continueGame(){
     menu.style.display = "none";
+    gameContainer.style.display = "block";
 }
 
 function openMenu(){
     menu.style.display = "flex";
+    gameContainer.style.display = "none";
 }
 //generate the world
 function generateTheWorld(){
