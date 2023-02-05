@@ -226,6 +226,7 @@ gameContainer.addEventListener("click" , (e)=>{
             e.target.setAttribute("blocktype" , "");
             setBackground(e.target);
             addToInventory(type);
+            makeBreakingSound(type);
         }
     }
 });
@@ -285,4 +286,17 @@ function resetInventory(){
             item.innerText = "";
         }
     })
+}
+
+const sounds = {
+    dirt : "audio/Grass_dig4_2.ogg",
+    stone : "audio/Stone_dig2.ogg",
+    grass : "audio/Grass_dig4_2.ogg",
+    "oak-log" : "audio/Wood_dig3.ogg",
+    "oak-leaves" : "audio/Grass_dig1.ogg",
+}
+
+function makeBreakingSound(type){
+    const audio = new Audio(sounds[type]);
+    audio.play();
 }
