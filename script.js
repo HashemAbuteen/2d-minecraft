@@ -208,16 +208,20 @@ gameContainer.addEventListener("click" , (e)=>{
 //this function handles adding items to the inventory
 function addToInventory(type){
     const items = document.querySelectorAll(".item");
+    //look if item already exists in inventory
     for (const item of items) {
+        if(item.getAttribute("itemtype") === type){
+            item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))+1);
+            item.innerText = item.getAttribute("quantity");
+            return;
+        }
+    }
+    //if not then add it to the first empty slot
+    for (const item of items){
         if(!item.getAttribute("itemtype")){
             item.setAttribute("itemtype" , type);
             item.setAttribute("quantity" , 1);
             setBackground(item);
-            return;
-        }
-        else if(item.getAttribute("itemtype") === type){
-            item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))+1);
-            item.innerText = item.getAttribute("quantity");
             return;
         }
     }
