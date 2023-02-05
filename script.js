@@ -185,6 +185,7 @@ gameContainer.addEventListener("click" , (e)=>{
         if(!e.target.getAttribute("blocktype")){
             if(blocks.includes(handItem)){
                 e.target.setAttribute("blocktype" , handItem);
+                removeFromInventory(handItem);
                 setBackground(e.target);
                 return;
             }
@@ -210,10 +211,31 @@ function addToInventory(type){
     for (const item of items) {
         if(!item.getAttribute("itemtype")){
             item.setAttribute("itemtype" , type);
+            item.setAttribute("quantity" , 1);
             setBackground(item);
             return;
         }
         else if(item.getAttribute("itemtype") === type){
+            item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))+1);
+            item.innerText = item.getAttribute("quantity");
+            return;
+        }
+    }
+}
+
+function removeFromInventory(type){
+    const items = document.querySelectorAll(".item");
+    for (const item of items) {
+        if(item.getAttribute("itemtype") === type){
+            item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))-1);
+            item.innerText = item.getAttribute("quantity");
+            if(item.getAttribute("quantity") === '0'){
+                item.setAttribute("itemtype","");
+                setBackground(item);
+                item.innerText = "";
+                handItem = "";
+                changeCursor();
+            }
             return;
         }
     }
