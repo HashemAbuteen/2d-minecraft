@@ -137,7 +137,12 @@ inventory.addEventListener("click" , (e)=>{
 
 //make the cursor is the handItem
 function changeCursor (){
-    document.body.style.cursor = "url(./cursor/"+handItem+".png) , auto";
+    if(handItem){
+        document.body.style.cursor = "url(./cursor/"+handItem+".png) , auto";
+    }
+    else{
+        document.body.style.cursor = "auto";
+    }
 }
 
 //this function go through inventory slots and and set background for them
@@ -212,7 +217,7 @@ function addToInventory(type){
     for (const item of items) {
         if(item.getAttribute("itemtype") === type){
             item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))+1);
-            item.innerText = item.getAttribute("quantity");
+            item.firstElementChild.innerText = item.getAttribute("quantity");
             return;
         }
     }
@@ -221,6 +226,8 @@ function addToInventory(type){
         if(!item.getAttribute("itemtype")){
             item.setAttribute("itemtype" , type);
             item.setAttribute("quantity" , 1);
+            item.appendChild(document.createElement("div"));
+            item.firstElementChild.classList.add("quantity");
             setBackground(item);
             return;
         }
@@ -232,11 +239,11 @@ function removeFromInventory(type){
     for (const item of items) {
         if(item.getAttribute("itemtype") === type){
             item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))-1);
-            item.innerText = item.getAttribute("quantity");
+            item.firstElementChild.innerText = item.getAttribute("quantity");
             if(item.getAttribute("quantity") === '0'){
                 item.setAttribute("itemtype","");
                 setBackground(item);
-                item.innerText = "";
+                item.firstElementChild.remove();
                 handItem = "";
                 changeCursor();
             }

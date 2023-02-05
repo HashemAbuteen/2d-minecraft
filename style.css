@@ -64,3 +64,8 @@ body{
     align-items: end;
 }
 
+.quantity {
+    transform: translate(1rem , 1rem);
+    font-size: 1.5rem;
+}
+
