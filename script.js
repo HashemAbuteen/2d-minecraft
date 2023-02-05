@@ -209,15 +209,17 @@ gameContainer.addEventListener("click" , (e)=>{
 function addToInventory(type){
     const items = document.querySelectorAll(".item");
     for (const item of items) {
+        if(item.getAttribute("itemtype") === type){
+            item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))+1);
+            item.innerText = item.getAttribute("quantity");
+            return;
+        }
+    }
+    for (const item of items){
         if(!item.getAttribute("itemtype")){
             item.setAttribute("itemtype" , type);
             item.setAttribute("quantity" , 1);
             setBackground(item);
-            return;
-        }
-        else if(item.getAttribute("itemtype") === type){
-            item.setAttribute("quantity" , parseInt(item.getAttribute("quantity"))+1);
-            item.innerText = item.getAttribute("quantity");
             return;
         }
     }
