@@ -9,6 +9,11 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div id="menu">
+      <img src="./imgs/mainlogo.png" />
+      <button onclick="startTheGame()">New Game</button>
+      <button onclick="continueGame()">Continue Game</button>
+    </div>
     <div class="game-container"></div>
     <div id="inventory">
       <div class="inventory-slot">
@@ -28,6 +33,10 @@
       <div class="inventory-slot"><div class="item"></div></div>
       <div class="inventory-slot"><div class="item"></div></div>
       <div class="inventory-slot"><div class="item"></div></div>
+    </div>
+    <div id="side-menu">
+      <button onclick="openMenu()">Menu</button>
+      <button onclick="startTheGame()">New World</button>
     </div>
   </body>
 </html>

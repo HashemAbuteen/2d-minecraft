@@ -1,7 +1,27 @@
 const gameContainer = document.getElementsByClassName("game-container")[0];
+const menu = document.getElementById("menu");
 
+
+function startTheGame(){
+    menu.style.display = "none";
+    generateTheWorld();
+    generateTrees();
+    resetInventory();
+    setBackgrounds();
+    handItem = "";
+    changeCursor();
+}
+
+function continueGame(){
+    menu.style.display = "none";
+}
+
+function openMenu(){
+    menu.style.display = "flex";
+}
 //generate the world
 function generateTheWorld(){
+    gameContainer.innerText = "";
     for (let i = 30; i > 0; i--) {
         const row = document.createElement("div");
         row.classList.add("row");
@@ -33,7 +53,6 @@ function generateTheWorld(){
         }
     }
 }
-generateTheWorld();
 
 //generate trees
 function generateTrees(){
@@ -105,7 +124,6 @@ function setTreeRestrictions(ground){
         x++;
     } 
 }
-generateTrees();
 
 //constants define what is a block and what is a tool and the type of the tool
 const shovels = ["diamond-shovel"];
@@ -152,6 +170,9 @@ function setBackgrounds () {
         if(item.getAttribute("itemtype")){
         item.style.background = "url(./blocks/"+ item.getAttribute("itemtype") +".webp) center center/cover";
         }
+        else{
+            item.style.background = "";
+        }
     });
     const blocks = document.querySelectorAll(".cell");
     blocks.forEach(block => {
@@ -175,7 +196,6 @@ function setBackground(item){
     }
 }
 
-setBackgrounds();
 
 //this handles clicks in the game container
 gameContainer.addEventListener("click" , (e)=>{
@@ -250,4 +270,19 @@ function removeFromInventory(type){
             return;
         }
     }
+}
+
+function resetInventory(){
+    const defaultInventory = ["diamond-pickaxe" , "diamond-axe" , "diamond-shovel", "shears"];
+    const inventoryItems = document.querySelectorAll(".item");
+    inventoryItems.forEach((item , index)=>{
+        if(defaultInventory[index]){
+            item.setAttribute("itemtype" , defaultInventory[index]);
+        }
+        else{
+            item.setAttribute("itemtype" , "");
+            item.setAttribute("quantity", 0);
+            item.innerText = "";
+        }
+    })
 }

@@ -69,3 +69,44 @@ body{
     font-size: 1.5rem;
 }
 
+#menu {
+    width: 100vw;
+    height: 100vh;
+    background: url(./imgs/menu-background.jpg) center center/cover;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+#menu img{
+    width: 50%;
+    margin-bottom: 2rem;
+}
+button {
+    background-color: #A0A0A0; /* Light wooden brown color */
+    border: 2px solid #707070; /* Dark wooden brown color */
+    border-radius: 4px;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0px 3px 1px #707070;
+    margin: 0.5rem;
+}
+#menu button{
+    width: 30%;
+    font-size: 2rem;
+}
+
+#side-menu {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
