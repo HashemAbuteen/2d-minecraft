@@ -16,6 +16,12 @@ body{
     font-family: 'minecraft', sans-serif;
 }
 
+.game-container{
+    background-color: #87CEEB;
+    width: fit-content;
+    height: fit-content;
+}
+
 .row{
     white-space: nowrap;
     height: 3rem;

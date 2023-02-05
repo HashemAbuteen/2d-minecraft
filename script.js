@@ -39,11 +39,9 @@ generateTheWorld();
 function generateTrees(){
     const grassCells = document.querySelectorAll("[blocktype='grass']");
     const numOfTrees = Math.ceil(Math.random()*grassCells.length/4);
-    console.log(numOfTrees);
     for(let i =0 ; i < numOfTrees ; i++){
         const randomGrassCell = grassCells[Math.floor(Math.random()*grassCells.length)];
         if(randomGrassCell.getAttribute("hasATree")){
-            console.log("conflict");
             continue;
         }
         else{
@@ -54,8 +52,7 @@ function generateTrees(){
 }
 
 function generateOakTree(ground){
-    console.log("generating atree");
-    const height = Math.floor(Math.random()*3)+6;
+    const height = Math.floor(Math.random()*3)+4;
     const id = ground.id;
     const x = id.split('-')[1];
     let y = parseInt(id.split('-')[2]);
@@ -66,6 +63,30 @@ function generateOakTree(ground){
             logCell.setAttribute("blocktype" , "oak-log");
             setBackground(logCell);
         }
+        if(i === height-2){
+            generateLeaves(logCell);
+        }
+    }
+}
+
+function generateLeaves(log){
+    const id = log.id;
+    let x = parseInt(id.split('-')[1]);
+    let y = parseInt(id.split('-')[2]);
+    let width;
+    for(let i = 0 ; i < 6; i++){
+        width = Math.ceil(3 - i/2);
+        for(let j = x-width; j<=x+width ; j++){
+            placeLeaf(j,y+i);
+        }
+    }
+}
+
+function placeLeaf(x , y ){
+    const leavesCell = document.getElementById("cell-"+x +"-" + y);
+    if(leavesCell && !leavesCell.getAttribute("blocktype")){
+        leavesCell.setAttribute("blocktype" , "oak-leaves");
+        setBackground(leavesCell);
     }
 }
 
@@ -90,13 +111,15 @@ generateTrees();
 const shovels = ["diamond-shovel"];
 const axes = ["diamond-axe"];
 const pickaxes = ["diamond-pickaxe"];
-const blocks = ["dirt" , "stone" , "grass" ,"oak-log"];
+const blocks = ["dirt" , "stone" , "grass" ,"oak-log" , "oak-leaves"];
+const shears = ["shears"]
 //what tool break each block
 const blockTool = {
     dirt : shovels,
     stone : pickaxes,
     grass : shovels,
     "oak-log" : axes,
+    "oak-leaves" : shears,
 }
 
 //hand item is the tool/block chosen from inventory
